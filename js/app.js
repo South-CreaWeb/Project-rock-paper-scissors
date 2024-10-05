@@ -1,8 +1,12 @@
+let humainScore = 0
+let computerScore = 0 
+
 /**
  * 
  * @returns {String}
  */
 function getComputerChoice(){
+
     let computerAnswer = Math.floor(Math.random() * 3)
 
     if(computerAnswer === 2) {
@@ -16,9 +20,10 @@ function getComputerChoice(){
         console.log(computerAnswer, 'scissors')
     }
 
-    return console.log(computerAnswer)
+    return computerAnswer
 }
-getComputerChoice()
+
+let responseComputer = getComputerChoice()
 
 
 /**
@@ -28,28 +33,28 @@ getComputerChoice()
  */
 function getHumanChoice(){
 
-    
+     let response = prompt(`Entrez l'une de ces trois valeurs: Rock, Paper or Scissors`).toLowerCase()
 
-     let response = prompt(`Entrez l'une de ces trois valeurs: Rock, Paper or Scissors`)
-
-    if(response != 'paper' && response != 'rock' && response != 'scissors') {
-        let newTry = response
-
-        newTry = alert('Perdu')
-        
-        console.log(newTry)
-
-    } else if (response === ''){
-
-        console.log('Perdu')
-       
-    } else {
-       console.log(response) 
-       return response
-    }
-    
-    
-    
+    return response
 }
 
-getHumanChoice()
+let responseHuman = getHumanChoice()
+
+/**
+ * 
+ * @param {String} responseHuman 
+ * @param {String} responseComputer 
+ */
+function playRound(responseHuman, responseComputer) {
+
+    if(responseHuman != responseComputer) {
+
+        console.log('Gagner', `response humaine: ${responseHuman}, reponse ordi: ${responseComputer}`)
+    } else {
+
+        console.log('Perdu')
+    }
+
+}
+
+playRound(responseHuman, responseComputer)
