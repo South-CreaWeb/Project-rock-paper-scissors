@@ -4,23 +4,23 @@
  */
 function getComputerChoice(){
 
-    let computerAnswer = Math.floor(Math.random() * 3)
+    let computerAnswer = Math.floor(Math.random() * 3);
 
     if(computerAnswer === 2) {
-        computerAnswer = 'rock'
-        console.log('rock')
+        computerAnswer = 'rock';
+        console.log('rock');
     } else if(computerAnswer === 1){
-        computerAnswer = 'paper'
-        console.log('paper')
+        computerAnswer = 'paper';
+        console.log('paper');
     }else{
-        computerAnswer = 'scissors'
-        console.log('scissors')
-    }
+        computerAnswer = 'scissors';
+        console.log('scissors');
+    };
 
-    return computerAnswer
+    return computerAnswer;
 }
 
-let responseComputer = getComputerChoice()
+let responseComputer = getComputerChoice();
 
 
 /**
@@ -30,12 +30,12 @@ let responseComputer = getComputerChoice()
  */
 function getHumanChoice(){
 
-    let response = prompt(`Entrez l'une de ces trois valeurs: Rock, Paper or Scissors`).toLowerCase()
+    let response = prompt(`Entrez l'une de ces trois valeurs: Rock, Paper or Scissors`).toLowerCase();
 
-    return response
-}
+    return response;
+};
 
-let responseHuman = getHumanChoice()
+let responseHuman = getHumanChoice();
 
 
 /**
@@ -44,8 +44,8 @@ let responseHuman = getHumanChoice()
 function playGame() {
 
         
-    let humainScore = 0
-    let computerScore = 0
+    let humainScore = 0;
+    let computerScore = 0;
 
     /**
     * Create the logic for playing
@@ -56,34 +56,34 @@ function playGame() {
 
         
         if(responseHuman === "rock" && responseComputer === "scissors" || responseHuman === "scissors" && responseComputer === "paper" || responseHuman === 'paper' && responseComputer === "rock") {
-            humainScore++
-            console.log(`Vous avez gagné: ${responseHuman} bat ${responseComputer}, votre score est de: ${humainScore}`)
+            humainScore++;
+            console.log(`Vous avez gagné: ${responseHuman} bat ${responseComputer}, votre score est de: ${humainScore}`);
         } else if (responseHuman === responseComputer){
-            console.log(`${responseHuman}, ${responseComputer}: égalité !`)
+            console.log(`${responseHuman}, ${responseComputer}: égalité !`);
         } else {
-            computerScore++
-            console.log(`L'ordinateur a gagner: le score ordinateur est de: ${computerScore}`)
-        }
+            computerScore++;
+            console.log(`L'ordinateur a gagner: le score ordinateur est de: ${computerScore}`);
+        };
 
-        getComputerChoice()
-        getHumanChoice()
+        getComputerChoice();
+        getHumanChoice();
 
-    }
+    };
     
-    playRound(responseHuman, responseComputer)
-    playRound(responseHuman, responseComputer)
-    playRound(responseHuman, responseComputer)
-    playRound(responseHuman, responseComputer)
-    playRound(responseHuman, responseComputer)
+    playRound(responseHuman, responseComputer);
+    playRound(responseHuman, responseComputer);
+    playRound(responseHuman, responseComputer);
+    playRound(responseHuman, responseComputer);
+    playRound(responseHuman, responseComputer);
 
     if(humainScore > computerScore) {
-        console.log(`Bravo vous avez gagner ! Avec un score de ${humainScore}`)
+        console.log(`Bravo vous avez gagner ! Avec un score de ${humainScore}`);
     } else if(humainScore < computerScore) {
-        console.log('Vous avez perdu !')
+        console.log('Vous avez perdu !');
     } else {
-        console.log('Égalité !')
-    }
+        console.log('Égalité !');
+    };
     
-}
+};
 
-playGame()
+playGame();
