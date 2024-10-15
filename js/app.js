@@ -21,6 +21,7 @@ function getComputerChoice(){
 }
 
 
+
 /**
  * Create a response for the player 
  * @returns {String}
@@ -49,6 +50,7 @@ function playGame() {
         
     let humainScore = 0;
     let computerScore = 0;
+    const roundNumber = 5
 
     /**
     * Create the logic for playing
@@ -78,12 +80,6 @@ function playGame() {
 
     };
 
-    playRound();
-    playRound();
-    playRound();
-    playRound();
-    playRound();
-    
 
     if(humainScore > computerScore) {
         console.log(`Bravo vous avez gagner ! Avec un score de ${humainScore} contre ${computerScore}`);
