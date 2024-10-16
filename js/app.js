@@ -21,6 +21,19 @@ function getComputerChoice(){
 }
 
 
+/**
+ * 
+ * @param {HTMLElement} tagname 
+ * @returns {HTMLElement}
+ */
+function createElement(tagname) {
+
+    let element = document.createElement(tagname)
+
+    return element
+}
+
+
 
 /**
  * Create a response for the player 
@@ -79,6 +92,25 @@ function playGame() {
        }
 
     };
+
+    playRound()
+
+    
+
+    const divHumanScore = document.querySelector('.human-score')
+    divHumanScore.classList.add('.active')
+    const displayHumanScore = createElement('p')
+    displayHumanScore.innerText = `Votre score : ${humainScore}`
+
+    divHumanScore.appendChild(displayHumanScore)
+
+    const divComputerScore = document.querySelector('.computer-score')
+    divComputerScore.classList.add('.active')
+    const displayComputerScore = createElement('p')
+    displayComputerScore.innerText = `Ordinateur score: ${computerScore}`
+
+    divComputerScore.appendChild(displayComputerScore)
+    
 
 
     if(humainScore > computerScore) {
