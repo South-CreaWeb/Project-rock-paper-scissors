@@ -26,11 +26,38 @@ h1{
     transition: all .3s;
 }
 
-.human-score, .computer-score, .active {
+.human-score.active, .computer-score.active {
     visibility: visible;
     padding: 5px;
     border: 1px solid rgb(23, 124, 212);
     border-radius: 5px;
     background-color: rgb(23, 124, 212);
     color: #ffffff;
+}
+
+/* SELECTION PLAYER */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 50px;
+}
+
+.wrapper img {
+    width: 50px;
+}
+
+.rock-container, .paper-container, .scissors-container {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    width: fit-content;
+    border: 2px solid rgb(23, 124, 212);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color .3s
+}
+
+.rock-container:hover,.paper-container:hover,.scissors-container:hover {
+    background-color: rgb(23, 124, 212);
 }

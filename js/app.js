@@ -33,37 +33,14 @@ function createElement(tagname) {
     return element
 }
 
-
-
 /**
- * Create a response for the player 
- * @returns {String}
- */
-function getHumanChoice(){
-
-    let response = prompt(`Entrez l'une de ces trois valeurs: Rock, Paper or Scissors`).toLowerCase();
-
-    if(response === null) {
-
-        response = prompt(`Entrez l'une de ces trois valeurs: Rock, Paper or Scissors`).toLowerCase();
-    } else {
-
-        return response;
-    }
-
-    
-};
-
-
-/**
- * Create a game with 5 round
+ * Create a game
  */
 function playGame() {
 
         
     let humainScore = 0;
     let computerScore = 0;
-    const roundNumber = 5
 
     /**
     * Create the logic for playing
@@ -71,13 +48,10 @@ function playGame() {
     */
     function playRound() {
 
-        let responseHuman = getHumanChoice();
-        let responseComputer = getComputerChoice();
-        console.log(responseComputer)
-
         
+        let responseComputer = getComputerChoice();
 
-        const humanPattern = (responseHuman === 'rock' && responseComputer === 'scissors') || (responseHuman === 'scissors' && responseComputer === 'paper') || (responseHuman === 'paper' && responseComputer === 'rock')
+        const humanPattern = (response === 'rock' && responseComputer === 'scissors') || (response === 'scissors' && responseComputer === 'paper') || (response === 'paper' && responseComputer === 'rock')
         
        if(humanPattern) {
         console.log(responseHuman, responseComputer)
@@ -91,21 +65,36 @@ function playGame() {
         console.log(`L'ordinateur a marqué ${computerScore} point`)
        }
 
+       
     };
 
-    playRound()
+    // CREATE SELECTOR FOR PLAYER
 
-    
+        const divs = document.querySelectorAll('div')
 
+        const humanChoices = [divs[4], divs[5], divs[6]]
+
+        for(choice of humanChoices) {
+            choice.addEventListener('click', (e) => {
+                let response = e.currentTarget.getAttribute('value')
+                console.log(response)
+                playRound()
+            })
+
+        }
+
+
+     
+    // DISPLAY GAME SCORE
     const divHumanScore = document.querySelector('.human-score')
-    divHumanScore.classList.add('.active')
+    divHumanScore.classList.add('active')
     const displayHumanScore = createElement('p')
     displayHumanScore.innerText = `Votre score : ${humainScore}`
 
     divHumanScore.appendChild(displayHumanScore)
 
     const divComputerScore = document.querySelector('.computer-score')
-    divComputerScore.classList.add('.active')
+    divComputerScore.classList.add('active')
     const displayComputerScore = createElement('p')
     displayComputerScore.innerText = `Ordinateur score: ${computerScore}`
 
@@ -124,5 +113,4 @@ function playGame() {
     
     
 };
-
 playGame();
