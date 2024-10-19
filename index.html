@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/app.js" defer></script>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/app.js" defer></script>
     <title>Rock, Paper, Scissors !</title>
 </head>
 <body>
@@ -16,14 +16,23 @@
     </div>
 
     <div class="wrapper">
-        <div class="rock-container" value="rock">
-            <img src="img/rock.svg" alt="icon of rock">
+        <div class="user-choices">
+            <div class="rock-container" value="rock">
+                <img src="img/rock.svg" alt="icon of rock">
+            </div>
+            <div class="paper-container" value="paper">
+                <img src="img/paper.svg" alt="icon of paper">
+            </div>
+            <div class="scissors-container" value="scissors">
+                <img src="img/scissors.svg" alt="icon of scissors">
+            </div>
         </div>
-        <div class="paper-container" value="paper">
-            <img src="img/paper.svg" alt="icon of paper">
+        <div class="message-container">
+            <div class="human-message"></div>
+            <div class="computer-message"></div>
         </div>
-        <div class="scissors-container" value="scissors">
-            <img src="img/scissors.svg" alt="icon of scissors">
+        <div class="computer-answer-container">
+            <div class="computer-answer"></div>
         </div>
     </div>
 </body>

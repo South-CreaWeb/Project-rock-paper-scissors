@@ -48,31 +48,40 @@ function playGame() {
     // Display score player
     const divHumanScore = document.querySelector(".human-score");
     const displayHumanScore = createElement("p");
-    displayHumanScore.innerText = `Votre score : ${humainScore}`;
 
     // Display score computer
     const divComputerScore = document.querySelector(".computer-score");
     const displayComputerScore = createElement("p");
-    displayComputerScore.innerText = `Ordinateur score: ${computerScore}`;
 
     setTimeout(() => {
-      divHumanScore.classList.add("active");
+      // divHumanScore.classList.add("active");
       divHumanScore.appendChild(displayHumanScore);
-      divComputerScore.classList.add("active");
+      // divComputerScore.classList.add("active");
       divComputerScore.appendChild(displayComputerScore);
     }, 500);
 
+    // CREATE MESSAGE
+    const humanMessage = document.querySelector(".human-message");
+    const displayHumanMessage = createElement("p");
+    displayHumanMessage.innerText = `Vous avez marqué ${humainScore} points !`;
+
+    const computerMessage = document.querySelector(".computer-message");
+    const displayComputerMessage = createElement("p");
+    displayComputerMessage.innerText = `L'ordinateur a marqué ${computerScore} point`;
+
+    humanMessage.appendChild(displayHumanMessage);
+    computerMessage.appendChild(displayComputerMessage);
     // CREATE SELECTOR FOR PLAYER
     const divs = document.querySelectorAll("div");
-    const humanChoices = [divs[4], divs[5], divs[6]];
+    const humanChoices = [divs[5], divs[6], divs[7]];
 
     for (choice of humanChoices) {
       choice.addEventListener("click", (e) => {
+        let responseComputer = getComputerChoice();
         let response = e.currentTarget.getAttribute("value");
         console.log(response);
 
-        let responseComputer = getComputerChoice();
-
+        // GAME PATTERN
         const humanPattern =
           (response === "rock" && responseComputer === "scissors") ||
           (response === "scissors" && responseComputer === "paper") ||
@@ -82,6 +91,8 @@ function playGame() {
           console.log(response, responseComputer);
           humainScore++;
           console.log(`Vous avez marqué ${humainScore} points !`);
+
+          divHumanScore.classList.add("active");
           displayHumanScore.innerText = `Votre score : ${humainScore}`;
         } else if (response === responseComputer) {
           console.log(`${response} = ${responseComputer} : Égalité !!`);
@@ -89,24 +100,28 @@ function playGame() {
           console.log(response, responseComputer);
           computerScore++;
           console.log(`L'ordinateur a marqué ${computerScore} point`);
+          divComputerScore.classList.add("active");
+
           displayComputerScore.innerText = `Ordinateur score: ${computerScore}`;
         }
 
         totalPointWin++;
         console.log(totalPointWin);
+
         if (totalPointWin === 5) {
           if (humainScore > computerScore) {
-            console.log("vous avez gagné");
-          } else if (humainScore < computerScore) {
-            console.log("ordi gagné");
+            divHumanScore.classList.remove("active");
+            return console.log("Vous avez gagner");
+          } else if (humainScore == computerScore) {
+            return console.log("Égalité");
           } else {
-            console.log("Égalité");
+            divComputerScore.classList.remove("active");
+            return console.log(`L'ordi a gagné`);
           }
         }
       });
     }
   }
-
   playRound();
 }
 playGame();

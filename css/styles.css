@@ -38,6 +38,11 @@ h1{
 /* SELECTION PLAYER */
 .wrapper {
     display: flex;
+    justify-content: space-between;
+}
+
+.user-choices {
+    display: flex;
     flex-direction: column;
     gap: 15px;
     margin-top: 50px;
@@ -58,6 +63,8 @@ h1{
     transition: background-color .3s
 }
 
-.rock-container:hover,.paper-container:hover,.scissors-container:hover {
+.rock-container:hover, .paper-container:hover, .scissors-container:hover {
     background-color: rgb(23, 124, 212);
 }
+
+/* COMPUTER ANSWER */
