@@ -5,15 +5,32 @@
 function getComputerChoice() {
   let computerAnswer = Math.floor(Math.random() * 3);
 
+  const signComputer = document.querySelector(".computer-answer");
+  const displayComputerResponse = createElement("img");
+
   if (computerAnswer === 2) {
     computerAnswer = "rock";
-    console.log("rock");
+    displayComputerResponse.setAttribute("src", "img/rock.svg");
+    signComputer.appendChild(displayComputerResponse);
+    setTimeout(() => {
+      displayComputerResponse.remove();
+    }, 1000);
   } else if (computerAnswer === 1) {
     computerAnswer = "paper";
-    console.log("paper");
+
+    displayComputerResponse.setAttribute("src", "img/paper.svg");
+    signComputer.appendChild(displayComputerResponse);
+    setTimeout(() => {
+      displayComputerResponse.remove();
+    }, 1000);
   } else {
     computerAnswer = "scissors";
-    console.log("scissors");
+
+    displayComputerResponse.setAttribute("src", "img/scissors.svg");
+    signComputer.appendChild(displayComputerResponse);
+    setTimeout(() => {
+      displayComputerResponse.remove();
+    }, 1000);
   }
 
   return computerAnswer;
@@ -54,23 +71,20 @@ function playGame() {
     const displayComputerScore = createElement("p");
 
     setTimeout(() => {
-      // divHumanScore.classList.add("active");
       divHumanScore.appendChild(displayHumanScore);
-      // divComputerScore.classList.add("active");
       divComputerScore.appendChild(displayComputerScore);
     }, 500);
 
     // CREATE MESSAGE
     const humanMessage = document.querySelector(".human-message");
     const displayHumanMessage = createElement("p");
-    displayHumanMessage.innerText = `Vous avez marqué ${humainScore} points !`;
 
     const computerMessage = document.querySelector(".computer-message");
     const displayComputerMessage = createElement("p");
-    displayComputerMessage.innerText = `L'ordinateur a marqué ${computerScore} point`;
 
-    humanMessage.appendChild(displayHumanMessage);
-    computerMessage.appendChild(displayComputerMessage);
+    const equalMessage = document.querySelector(".equal-message");
+    const displayEqualMessage = createElement("p");
+
     // CREATE SELECTOR FOR PLAYER
     const divs = document.querySelectorAll("div");
     const humanChoices = [divs[5], divs[6], divs[7]];
@@ -79,7 +93,7 @@ function playGame() {
       choice.addEventListener("click", (e) => {
         let responseComputer = getComputerChoice();
         let response = e.currentTarget.getAttribute("value");
-        console.log(response);
+        // console.log(response);
 
         // GAME PATTERN
         const humanPattern =
@@ -88,20 +102,29 @@ function playGame() {
           (response === "paper" && responseComputer === "rock");
 
         if (humanPattern) {
-          console.log(response, responseComputer);
           humainScore++;
-          console.log(`Vous avez marqué ${humainScore} points !`);
-
+          humanMessage.appendChild(displayHumanMessage);
           divHumanScore.classList.add("active");
+          displayHumanMessage.innerText = `Vous avez marqué ${humainScore} points !`;
+          setTimeout(() => {
+            displayHumanMessage.remove();
+          }, 1000);
           displayHumanScore.innerText = `Votre score : ${humainScore}`;
         } else if (response === responseComputer) {
-          console.log(`${response} = ${responseComputer} : Égalité !!`);
+          equalMessage.appendChild(displayEqualMessage);
+          displayEqualMessage.innerText = `${response} et ${responseComputer} : Égalité !!`;
+          setTimeout(() => {
+            displayEqualMessage.remove();
+          }, 1000);
         } else {
-          console.log(response, responseComputer);
           computerScore++;
-          console.log(`L'ordinateur a marqué ${computerScore} point`);
-          divComputerScore.classList.add("active");
 
+          computerMessage.appendChild(displayComputerMessage);
+          divComputerScore.classList.add("active");
+          displayComputerMessage.innerText = `L'ordinateur a marqué ${computerScore} point !`;
+          setTimeout(() => {
+            displayComputerMessage.remove();
+          }, 1000);
           displayComputerScore.innerText = `Ordinateur score: ${computerScore}`;
         }
 
@@ -110,13 +133,14 @@ function playGame() {
 
         if (totalPointWin === 5) {
           if (humainScore > computerScore) {
-            divHumanScore.classList.remove("active");
-            return console.log("Vous avez gagner");
+            humanMessage.appendChild(displayHumanMessage);
+            displayHumanMessage.innerText = "Vous avez gagné !";
           } else if (humainScore == computerScore) {
-            return console.log("Égalité");
+            equalMessage.appendChild(displayEqualMessage);
+            displayEqualMessage.innerText = `Égalité !!`;
           } else {
-            divComputerScore.classList.remove("active");
-            return console.log(`L'ordi a gagné`);
+            computerMessage.appendChild(displayComputerMessage);
+            displayComputerMessage.innerText = "L'ordinateur a gagné !";
           }
         }
       });
